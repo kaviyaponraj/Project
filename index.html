@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kaviya | Portfolio</title>
+<style>
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body {
+    font-family: Arial, sans-serif; line-height:1.5; background:#f0f2f5; color:#333; scroll-behavior:smooth;
+  }
+  header {
+    background:#222831; color:#eee; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center;
+  }
+  header h1 { font-size:1.5rem; }
+  nav a {
+    color:#00adb5; margin-left:1.5rem; text-decoration:none; font-weight:600; transition:color 0.3s;
+  }
+  nav a:hover, nav a.active { color:#eee; }
+  main {
+    max-width:900px; margin:3rem auto; padding:0 1rem;
+  }
+  section {
+    background:#fff; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.1); padding:2rem; margin-bottom:3rem;
+  }
+  h2 {
+    border-bottom:3px solid #00adb5; display:inline-block; margin-bottom:1rem; color:#222831;
+  }
+  #hero {
+    text-align:center; background:linear-gradient(135deg,#00adb5,#393e46); color:#fff; border-radius:10px; padding:3rem 2rem;
+  }
+  #hero h1 { font-size:2.5rem; margin-bottom:0.5rem; }
+  #hero p { margin-bottom:1rem; font-weight:500; max-width:600px; margin-left:auto; margin-right:auto; }
+  #hero button {
+    background:#eee; color:#00adb5; border:none; padding:0.75rem 1.5rem; border-radius:30px; cursor:pointer; font-weight:600;
+    transition:background 0.3s;
+  }
+  #hero button:hover { background:#c1ffff; }
+  @media(max-width:600px) {
+    header { padding:1rem 1rem; }
+    nav a { margin-left:1rem; font-size:0.9rem; }
+    #hero h1 { font-size:2rem; }
+    main { margin:2rem 1rem 3rem; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Kaviya</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+<main>
+  <section id="hero">
+    <h1>Hello Kaviya</h1>
+    <p>Passionate web developer building beautiful and functional websites.</p>
+    <button onclick="location.href='contact.html'">Get In Touch</button>
+  </section>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I specialize in responsive web development with HTML, CSS & JavaScript, crafting user-friendly experiences.</p>
+  </section>
+</main>
+<footer style="text-align:center; color:#888; padding:1.5rem; font-size:0.9rem; user-select:none;">
+  &copy; 2025 Kaviya. All rights reserved.
+</footer>
+<script>
+  // Dynamic active link highlight
+  const currentPage = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('nav a');
+  navLinks.forEach(link => {
+    if(link.getAttribute('href') === currentPage || (currentPage === '' && link.getAttribute('href') === 'index.html')) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>

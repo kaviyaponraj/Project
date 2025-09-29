@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Alex Smith | Projects</title>
+<style>
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body {
+    font-family: Arial, sans-serif; line-height:1.5; background:#f0f2f5; color:#333; scroll-behavior:smooth;
+  }
+  header {
+    background:#222831; color:#eee; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center;
+  }
+  header h1 { font-size:1.5rem; }
+  nav a {
+    color:#00adb5; margin-left:1.5rem; text-decoration:none; font-weight:600; transition:color 0.3s;
+  }
+  nav a:hover, nav a.active { color:#eee; }
+  main {
+    max-width:900px; margin:3rem auto; padding:0 1rem;
+  }
+  section {
+    background:#fff; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.1); padding:2rem; margin-bottom:3rem;
+  }
+  h2 {
+    border-bottom:3px solid #00adb5; display:inline-block; margin-bottom:1rem; color:#222831;
+  }
+  .projects-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem;
+  }
+  .project-card {
+    background:#fafafa; border-radius:10px; box-shadow:0 3px 10px rgba(0,0,0,0.1); overflow:hidden; cursor:pointer;
+    transition:transform 0.3s;
+  }
+  .project-card:hover { transform: translateY(-5px); }
+  .project-card img { width:100%; height:140px; object-fit:cover; display:block; }
+  .project-content { padding:1rem; }
+  .project-content h3 { color:#00adb5; margin-bottom:0.5rem; }
+  @media(max-width:600px) {
+    header { padding:1rem 1rem; }
+    nav a { margin-left:1rem; font-size:0.9rem; }
+    main { margin:2rem 1rem 3rem; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Alex Smith</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+<main>
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Portfolio Website" />
+        <div class="project-content">
+          <h3>Portfolio Website</h3>
+          <p>A personal portfolio built with HTML, CSS & JS.</p>
+        </div>
+      </div>
+      <div class="project-card" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Task Manager App" />
+        <div class="project-content">
+          <h3>Task Manager App</h3>
+          <p>A productivity app built with React & Firebase.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer style="text-align:center; color:#888; padding:1.5rem; font-size:0.9rem; user-select:none;">
+  &copy; 2025 Alex Smith. All rights reserved.
+</footer>
+<script>
+  const currentPage = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('nav a');
+  navLinks.forEach(link => {
+    if(link.getAttribute('href') === currentPage || (currentPage === '' && link.getAttribute('href') === 'index.html')) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>

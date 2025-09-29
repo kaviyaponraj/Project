@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Alex Smith | Contact</title>
+<style>
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body {
+    font-family: Arial, sans-serif; line-height:1.5; background:#f0f2f5; color:#333; scroll-behavior:smooth;
+  }
+  header {
+    background:#222831; color:#eee; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center;
+  }
+  header h1 { font-size:1.5rem; }
+  nav a {
+    color:#00adb5; margin-left:1.5rem; text-decoration:none; font-weight:600; transition:color 0.3s;
+  }
+  nav a:hover, nav a.active { color:#eee; }
+  main {
+    max-width:900px; margin:3rem auto; padding:0 1rem;
+  }
+  section {
+    background:#fff; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.1); padding:2rem; margin-bottom:3rem;
+  }
+  h2 {
+    border-bottom:3px solid #00adb5; display:inline-block; margin-bottom:1rem; color:#222831;
+  }
+  form {
+    max-width:500px; margin:auto; display:flex; flex-direction:column; gap:1rem;
+  }
+  input, textarea {
+    padding:0.75rem 1rem; border:1px solid #ccc; border-radius:8px; font-size:1rem; resize:vertical;
+  }
+  input:focus, textarea:focus {
+    border-color:#00adb5; outline:none; box-shadow:0 0 8px #00adb5;
+  }
+  button.submit-btn {
+    background:#00adb5; color:#fff; border:none; padding:0.85rem 1.5rem; font-weight:700; border-radius:30px;
+    cursor:pointer; transition:background 0.3s;
+  }
+  button.submit-btn:hover { background:#007c81; }
+  @media(max-width:600px) {
+    header { padding:1rem 1rem; }
+    nav a { margin-left:1rem; font-size:0.9rem; }
+    main { margin:2rem 1rem 3rem; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Alex Smith</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+<main>
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contactForm" novalidate>
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </section>
+</main>
+<footer style="text-align:center; color:#888; padding:1.5rem; font-size:0.9rem; user-select:none;">
+  &copy; 2025 Alex Smith. All rights reserved.
+</footer>
+<script>
+  const currentPage = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('nav a');
+  navLinks.forEach(link => {
+    if(link.getAttribute('href') === currentPage || (currentPage === '' && link.getAttribute('href') === 'index.html')) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+
+  // Simple form validation
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = form.name.value.trim();
