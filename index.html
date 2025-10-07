@@ -1,83 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Kaviya | Portfolio</title>
-<style>
-  *{margin:0; padding:0; box-sizing:border-box;}
-  body {
-    font-family: Arial, sans-serif; line-height:1.5; background:#f0f2f5; color:#333; scroll-behavior:smooth;
-  }
-  header {
-    background:#222831; color:#eee; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center;
-  }
-  header h1 { font-size:1.5rem; }
-  nav a {
-    color:#00adb5; margin-left:1.5rem; text-decoration:none; font-weight:600; transition:color 0.3s;
-  }
-  nav a:hover, nav a.active { color:#eee; }
-  main {
-    max-width:900px; margin:3rem auto; padding:0 1rem;
-  }
-  section {
-    background:#fff; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.1); padding:2rem; margin-bottom:3rem;
-  }
-  h2 {
-    border-bottom:3px solid #00adb5; display:inline-block; margin-bottom:1rem; color:#222831;
-  }
-  #hero {
-    text-align:center; background:linear-gradient(135deg,#00adb5,#393e46); color:#fff; border-radius:10px; padding:3rem 2rem;
-  }
-  #hero h1 { font-size:2.5rem; margin-bottom:0.5rem; }
-  #hero p { margin-bottom:1rem; font-weight:500; max-width:600px; margin-left:auto; margin-right:auto; }
-  #hero button {
-    background:#eee; color:#00adb5; border:none; padding:0.75rem 1.5rem; border-radius:30px; cursor:pointer; font-weight:600;
-    transition:background 0.3s;
-  }
-  #hero button:hover { background:#c1ffff; }
-  @media(max-width:600px) {
-    header { padding:1rem 1rem; }
-    nav a { margin-left:1rem; font-size:0.9rem; }
-    #hero h1 { font-size:2rem; }
-    main { margin:2rem 1rem 3rem; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio Builder</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      background: linear-gradient(to right, #89f7fe, #66a6ff);
+    }
+    .hidden {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    header {
+      background-color: #006f94;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .nav-link {
+      text-decoration: none;
+      color: white;
+      margin: 0 10px;
+      font-size: 16px;
+    }
+    .container, .login-box {
+      text-align: center;
+      padding-top: 100px;
+    }
+    h1, h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+    }
+    .btn, button {
+      background-color: #006f94;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .btn:hover, button:hover {
+      background-color: #004f6d;
+    }
+    input, textarea {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .login-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      width: 300px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    main {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin: 30px;
+    }
+    section {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      width: 45%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      min-width: 300px;
+    }
+    ul {
+      list-style: square;
+      margin-left: 20px;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>Kaviya</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="projects.html">Projects</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
-<main>
-  <section id="hero">
-    <h1>Hello Kaviya</h1>
-    <p>Passionate web developer building beautiful and functional websites.</p>
-    <button onclick="location.href='contact.html'">Get In Touch</button>
-  </section>
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I specialize in responsive web development with HTML, CSS & JavaScript, crafting user-friendly experiences.</p>
-  </section>
-</main>
-<footer style="text-align:center; color:#888; padding:1.5rem; font-size:0.9rem; user-select:none;">
-  &copy; 2025 Kaviya. All rights reserved.
-</footer>
-<script>
-  // Dynamic active link highlight
-  const currentPage = window.location.pathname.split('/').pop();
-  const navLinks = document.querySelectorAll('nav a');
-  navLinks.forEach(link => {
-    if(link.getAttribute('href') === currentPage || (currentPage === '' && link.getAttribute('href') === 'index.html')) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
+  <div id="home" class="container active">
+    <h1>Welcome to Portfolio Builder</h1>
+    <p>Create your personalized professional portfolio in minutes!</p>
+    <button onclick="showLogin()">Login</button>
+  </div>
+
+  <div id="login" class="login-box hidden">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Enter Username" required><br>
+    <input type="password" id="password" placeholder="Enter Password" required><br>
+    <button onclick="login()">Login</button>
+    <p style="margin-top: 15px;"><span class="nav-link" onclick="showHome()">🏠 Home</span></p>
+  </div>
+
+  <div id="builder" class="hidden">
+    <header>
+      <h1>Portfolio Builder</h1>
+      <span class="nav-link" onclick="logout()">🔐 Logout</span>
+    </header>
+    <main>
+      <section>
+        <h2>Enter Your Details</h2>
+        <form id="portfolioForm">
+          <input type="text" id="name" placeholder="Your Name" required><br>
+          <input type="text" id="title" placeholder="Your Title (e.g., Web Developer)" required><br>
+          <textarea id="about" rows="3" placeholder="About You" required></textarea><br>
+          <input type="text" id="project1" placeholder="Project 1"><br>
+          <input type="text" id="project2" placeholder="Project 2"><br>
+          <input type="text" id="project3" placeholder="Project 3"><br>
+          <button type="button" class="btn" onclick="generatePortfolio()">Generate Portfolio</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Preview</h2>
+        <div id="preview">
+          <h3 id="pname">Your Name</h3>
+          <p id="ptitle">Your Title</p>
+          <p id="pabout">Write about yourself...</p>
+          <h4>Projects:</h4>
+          <ul id="plist">
+            <li>Project 1</li>
+            <li>Project 2</li>
+            <li>Project 3</li>
+          </ul>
+        </div>
+        <button class="btn" onclick="downloadPDF()">Download as PDF</button>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function showLogin() {
+      document.getElementById("home").classList.remove("active");
+      document.getElementById("login").classList.remove("hidden");
     }
-  });
-</script>
+
+    function showHome() {
+      document.getElementById("login").classList.add("hidden");
+      document.getElementById("home").classList.add("active");
+    }
+
+    function login() {
+      let user = document.getElementById("username").value;
+      let pass = document.getElementById("password").value;
+      if (user === "admin" && pass === "1234") {
+        document.getElementById("login").classList.add("hidden");
+        document.getElementById("builder").classList.remove("hidden");
+      } else {
+        alert("Invalid Username or Password! Try again.");
+      }
+    }
+
+    function logout() {
+      document.getElementById("builder").classList.add("hidden");
+      document.getElementById("home").classList.add("active");
+    }
+
+    function generatePortfolio() {
+      document.getElementById("pname").innerText = document.getElementById("name").value;
+      document.getElementById("ptitle").innerText = document.getElementById("title").value;
+      document.getElementById("pabout").innerText = document.getElementById("about").value;
+      const projects = [
+        document.getElementById("project1").value,
+        document.getElementById("project2").value,
+        document.getElementById("project3").value
+      ];
+      const plist = document.getElementById("plist");
+      plist.innerHTML = "";
+      projects.forEach(p => {
+        if (p.trim() !== "") {
+          const li = document.createElement("li");
+          li.innerText = p;
+          plist.appendChild(li);
+        }
+      });
+    }
+
+    async function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.text("Portfolio", 90, 15);
+      doc.text("Name: " + document.getElementById("pname").innerText, 20, 30);
+      doc.text("Title: " + document.getElementById("ptitle").innerText, 20, 40);
+      doc.text("About: " + document.getElementById("pabout").innerText, 20, 50);
+      doc.text("Projects:", 20, 70);
+      let y = 80;
+      document.querySelectorAll("#plist li").forEach(li => {
+        doc.text("- " + li.innerText, 25, y);
+        y += 10;
+      });
+      doc.save("Portfolio.pdf");
+    }
+  </script>
 </body>
 </html>
